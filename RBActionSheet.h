@@ -11,10 +11,10 @@
 @class RBActionSheet;
 
 /// the block type that will be passed an action sheet and a button index
-typedef void (^RBActionSheetWithButtonIndexBlock)(RBActionSheet *, NSInteger buttonIndex);
+typedef void (^RBActionSheetWithButtonIndexBlock)(RBActionSheet * alertView, NSInteger buttonIndex);
 
 /// the block type that will be passed an action sheet
-typedef void (^RBActionSheetBlock)(RBActionSheet *);
+typedef void (^RBActionSheetBlock)(RBActionSheet * alertView);
 
 /// Extends `UIActionSheet` to handle delegation via blocks
 /**
@@ -37,10 +37,10 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
      otherButtonTitles:(NSArray *)otherButtonTitles
           clickedBlock:(RBActionSheetWithButtonIndexBlock)clickedBlock;
 
-- (RBActionSheet *)actionSheetWithTitle:(NSString *)title
++ (RBActionSheet *)actionSheetWithTitle:(NSString *)title
                      cancelButtonTitile:(NSString *)cancelButtonTitle
                  destructiveButtonTitle:(NSString *)destructiveButtonTitle
-                     otherButtonTitiles:(NSArray *)otherButtonTitiles
+                      otherButtonTitles:(NSArray *)otherButtonTitles
                            clickedBlock:(RBActionSheetWithButtonIndexBlock)clickedBlock;
 
 @end

@@ -23,11 +23,22 @@
             [self addButtonWithTitle:buttonTitle];
         }
         
-        //
+        uint index = otherButtonTitles.count;
+        
+        // destructive title
+        if ( destructiveButtonTitle != nil )
+        {
+            [self addButtonWithTitle:destructiveButtonTitle];
+            self.destructiveButtonIndex = index;
+            index++;
+        }
         
         // cancel title
-        [self addButtonWithTitle:cancelButtonTitle];
-        [self setCancelButtonIndex:otherButtonTitles.count];
+        if ( cancelButtonTitle != nil )
+        {
+            [self addButtonWithTitle:cancelButtonTitle];
+            [self setCancelButtonIndex:index];
+        }
         
         self.clickedBlock = clickedBlock;
         self.delegate = self;
@@ -102,6 +113,21 @@
     // the reason is action sheet will react differently
     // if this method is defined
     self.cancelBlock( self );
+}
+
+#pragma - Stactic
+
++ (RBActionSheet *)actionSheetWithTitle:(NSString *)title
+                     cancelButtonTitile:(NSString *)cancelButtonTitle
+                 destructiveButtonTitle:(NSString *)destructiveButtonTitle
+                      otherButtonTitles:(NSArray *)otherButtonTitles
+                           clickedBlock:(RBActionSheetWithButtonIndexBlock)clickedBlock
+{
+    return [[self alloc] initWithTitle:title
+                     cancelButtonTitle:cancelButtonTitle
+                destructiveButtonTitle:destructiveButtonTitle
+                     otherButtonTitles:otherButtonTitles
+                          clickedBlock:clickedBlock];
 }
 
 @end
